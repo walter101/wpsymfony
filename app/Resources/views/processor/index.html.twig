@@ -1,0 +1,55 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Processors list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Processor_speed</th>
+                <th>Processor_type</th>
+                <th>Cores</th>
+                <th>Socket</th>
+                <th>Poweruse</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for processor in processors %}
+            <tr>
+                <td><a href="{{ path('processor_show', { 'id': processor.id }) }}">{{ processor.id }}</a></td>
+                <td>{{ processor.name }}</td>
+                <td>{{ processor.price }}</td>
+                <td>{{ processor.processorspeed }}</td>
+                <td>{{ processor.processortype }}</td>
+                <td>{{ processor.cores }}</td>
+                <td>{{ processor.socket }}</td>
+                <td>{{ processor.poweruse }}</td>
+                <td>{{ processor.image }}</td>
+                <td>
+                    <a href="{{ path('processor_show', { 'id': processor.id }) }}"> <i class="fas fa-eye fa-lg"></i></a>
+                    <a href="{{ path('processor_edit', { 'id': processor.id }) }}"> <i class="fas fa-edit fa-lg"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('processor_new') }}"><i class="far fa-plus-square"></i> Create a new processor</a>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

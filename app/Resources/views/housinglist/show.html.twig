@@ -1,0 +1,70 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Housinglist</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ housingList.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ housingList.name }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ housingList.color }}</td>
+            </tr>
+            <tr>
+                <th>Shape</th>
+                <td>{{ housingList.shape }}</td>
+            </tr>
+            <tr>
+                <th>Lenght</th>
+                <td>{{ housingList.lenght }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ housingList.height }}</td>
+            </tr>
+            <tr>
+                <th>Width</th>
+                <td>{{ housingList.width }}</td>
+            </tr>
+            <tr>
+                <th valign="top">Image</th>
+                <td>
+                    <img src="{{ asset( 'uploads/images/'~ housingList.image) }}" alt="{{ housingList.name }}"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('housinglist_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('housinglist_edit', { 'id': housingList.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

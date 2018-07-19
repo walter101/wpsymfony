@@ -1,0 +1,8 @@
+AppBundle\Entity\Genius:
+   genius_{1..10}:
+      name: '<genius()>'
+      subFamily: '<text(20)>'
+      speciesCount: <numberBetween(1, 200)>
+      funFact: '<sentence()>'
+      LastUpdateAt: '<dateTimeBetween("-2000 days", "now")>'
+      isPublished: <boolean(65)>

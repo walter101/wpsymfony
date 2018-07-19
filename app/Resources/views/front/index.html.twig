@@ -1,0 +1,134 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Overzicht computers</h1>
+
+
+    <table class="table table-hover">
+        <thead>
+        <tr class="table-dark">
+            <th class="col-xs-1"><a href="{{ path('front_index',{'sortingColumn' : 'Id'}) }}"> Id
+                    {% if app.session.get('sortingColumn') == 'Id'   %}
+                        {%  if sortingDirectionDown == false %} <i class="fas fa-arrow-up"></i>
+                        {%  elseif sortingDirectionDown  == true %} <i class="fas fa-arrow-down"></i>
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th class="col-xs-3"><a href="{{ path('front_index',{'sortingColumn' : 'name'}) }}"> Name
+                    {% if app.session.get('sortingColumn') == 'name'   %}
+                        {%  if sortingDirectionDown == false %} <i class="fas fa-arrow-up"></i>
+                        {%  elseif sortingDirectionDown  == true %} <i class="fas fa-arrow-down"></i>
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th class="col-md-1"><a href="{{ path('front_index',{'sortingColumn' : 'Price'}) }}"> Price
+                    {% if app.session.get('sortingColumn') == 'Price'   %}
+                        {%  if sortingDirectionDown == false %} <i class="fas fa-arrow-up"></i>
+                        {%  elseif sortingDirectionDown  == true %} <i class="fas fa-arrow-down"></i>
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th class="col-xs-3>"><a href="{{ path('front_index',{'sortingColumn' : 'Processor'}) }}"> Processor
+                    {% if app.session.get('sortingColumn') == 'Processor'   %}
+                        {%  if sortingDirectionDown == false %} <i class="fas fa-arrow-up"></i>
+                        {%  elseif sortingDirectionDown  == true %} <i class="fas fa-arrow-down"></i>
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th class="col-xs-2"><a href="{{ path('front_index',{'sortingColumn' : 'Memory'}) }}"> Memory
+                    {% if app.session.get('sortingColumn') == 'Memory'   %}
+                        {%  if sortingDirectionDown == false %} <i class="fas fa-arrow-up"></i>
+                        {%  elseif sortingDirectionDown  == true %} <i class="fas fa-arrow-down"></i>
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th class="col-xs-2"><a href="{{ path('front_index',{'sortingColumn' : 'Image'}) }}"> Image
+                    {% if app.session.get('sortingColumn') == 'Image'   %}
+                        {%  if sortingDirectionDown == false %} <i class="fas fa-arrow-up"></i>
+                        {%  elseif sortingDirectionDown  == true %} <i class="fas fa-arrow-down"></i>
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for computer in Computers %}
+            <tr>
+                <th>{{ computer.id }}</th>
+                <th>{{ computer.name }}</th>
+                <th>{{ computer.price }}</th>
+                <th>{{ computer.processor }}</th>
+                <th>{{ computer.memory }}</th>
+                <th>{{ computer.image }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% for computer in Computers %}
+        {{ dump(computer) }}
+    {% endfor %}
+
+    sortingDirectionDown: {{ app.session.get('sortingDirectionDown') }}<br>
+    {% if app.session.get('filterArray')   %}
+            sortingFilter: {{ app.session.get('sortingFilter') }}<br>
+            priceFrom: {{ app.session.get('filterArray')['priceFrom'] }}<br>
+            priceTo: {{ app.session.get('filterArray')['priceTo'] }}<br>
+            filterMemory: {{ app.session.get('filterArray')['filterMemory'] }}<br>
+            filterProcessor: {{ app.session.get('filterArray')['filterProcessor'] }}<br>
+    {% endif %}
+
+
+    examples fontawesoms arrows<br>
+    up: <i class="fas fa-arrow-up"></i><br>
+    right: <i class="fas fa-arrow-right"></i><br>
+
+    left: <i class="fas fa-arrow-left"></i><br>
+
+    down: <i class="fas fa-arrow-down"></i><br>
+    move: <i class="fas fa-arrows-alt"></i><br>
+
+
+
+
+{% endblock %}
+
+{%  block menu %}
+    <div class="FilterLabel">Filters</div>
+    {{ form_start(filterForm) }}
+
+    {{ form_errors(filterForm.priceFrom) }}
+    {{ form_label(filterForm.priceFrom) }}
+    {{ form_widget(filterForm.priceFrom) }}
+
+    {{ form_errors(filterForm.priceTo) }}
+    {{ form_label(filterForm.priceTo) }}
+    {{ form_widget(filterForm.priceTo) }}
+
+    {{ form_errors(filterForm.filterMemory) }}
+    {{ form_label(filterForm.filterMemory) }}
+    {{ form_widget(filterForm.filterMemory) }}
+
+
+    {{ form_errors(filterForm.filterProcessor) }}
+    {{ form_label(filterForm.filterProcessor) }}
+    {{ form_widget(filterForm.filterProcessor) }}
+
+    <input type="submit" value="Filter" formnovalidate/>
+
+    {{ form_end(filterForm) }}
+{%  endblock %}

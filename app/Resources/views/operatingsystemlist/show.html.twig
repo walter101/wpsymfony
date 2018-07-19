@@ -1,0 +1,51 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Operatingsystemlist</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ operatingSystemList.id }}</td>
+            </tr>
+            <tr>
+                <th>Operatingsystemname</th>
+                <td>{{ operatingSystemList.operatingSystemName }}</td>
+            </tr>
+            <tr>
+                <th valign="top">Image</th>
+                <td>
+                    {{ operatingSystemList.image }}
+                    <img src="{{ asset( 'uploads/images/'~ operatingSystemList.image) }}" alt="{{ operatingSystemList.operatingSystemName }}"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('operatingsystemlist_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('operatingsystemlist_edit', { 'id': operatingSystemList.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

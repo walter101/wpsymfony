@@ -33,3 +33,38 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    app.mytestservice:
+        class: AppBundle\Controller\ServiceController
+        public: true
+#        arguments: ['@AppBundle\Controller\ServiceController']
+
+    app.RandomCity:
+        public: true
+        class: AppBundle\MyService\RandomCityService
+        arguments: ['@app.TextMarup']
+
+    app.TextMarup:
+        public: true
+        class: AppBundle\MyService\TextMarkupService
+
+    app.servicetester:
+        public: true
+        class: AppBundle\MyService\servicetester\servicetester
+
+
+    # Deze listener heeft meedere functies.
+    # Elke functie wordt middels tags verbonden aan een evetn
+    # Zo kun je meedere (gerelateerde) events in een listener class afhandelen.
+
+    # event: kernel.view: Deze listener triggerd als een controller geen response object aflevert
+    # kernel.response: Deze listener triggerd nadat de controller een response object afgelevert, maar nog niet is verzonden naar de client, dus je kunt hem dan nog aanpassen
+    # kernel.controller: Deze listener triggerd net voordat een controller wordt uitgevoerd. Je kunt dan nog iets doen, en daana wordt de controller uitgevoerd met als result: de response
+#    AppBundle\EventListeners\ExceptionListener:
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.response }
+#            - { name: kernel.event_listener, event: kernel.view }
+#            - { name: kernel.event_listener, event: kernel.controller }
+#            - { name: kernel.event_listener, event: kernel.request }
+#            - { name: kernel.event_listener, event: kernel.terminate }
+

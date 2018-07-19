@@ -1,0 +1,33 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Housinglist edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" formnovalidate/>
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('housinglist_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

@@ -1,0 +1,73 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Mainboards list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Pclex16</th>
+                <th>Pclex1</th>
+                <th>Memoryslots</th>
+                <th>Memorymax</th>
+                <th>Memorytypes</th>
+                <th>Usb2_0</th>
+                <th>Usb3_0</th>
+                <th>Usb3_1</th>
+                <th>Hdmi_inputs</th>
+                <th>Dvi_inputs</th>
+                <th>Bluetooth</th>
+                <th>Wlan</th>
+                <th>Microphone_in</th>
+                <th>Line_in</th>
+                <th>Line_out</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mainBoard in mainBoards %}
+            <tr>
+                <td><a href="{{ path('mainboard_show', { 'id': mainBoard.id }) }}">{{ mainBoard.id }}</a></td>
+                <td>{{ mainBoard.name }}</td>
+                <td>{{ mainBoard.price }}</td>
+                <td>{{ mainBoard.PCLex16 }}</td>
+                <td>{{ mainBoard.PCLex1 }}</td>
+                <td>{{ mainBoard.memorySlots }}</td>
+                <td>{{ mainBoard.memoryMax }}</td>
+                <td>{{ mainBoard.memoryTypes }}</td>
+                <td>{{ mainBoard.usb20 }}</td>
+                <td>{{ mainBoard.usb30 }}</td>
+                <td>{{ mainBoard.usb31 }}</td>
+                <td>{{ mainBoard.hdmiinputs }}</td>
+                <td>{{ mainBoard.dviinputs }}</td>
+                <td>{% if mainBoard.bluetooth %}Yes{% else %}No{% endif %}</td>
+                <td>{% if mainBoard.wlan %}Yes{% else %}No{% endif %}</td>
+                <td>{% if mainBoard.microphonein %}Yes{% else %}No{% endif %}</td>
+                <td>{% if mainBoard.linein %}Yes{% else %}No{% endif %}</td>
+                <td>{% if mainBoard.lineout %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <a href="{{ path('mainboard_show', { 'id': mainBoard.id }) }}"> <i class="fas fa-eye fa-lg"></i></a>
+                    <a href="{{ path('mainboard_edit', { 'id': mainBoard.id }) }}"> <i class="fas fa-edit fa-lg"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('mainboard_new') }}"><i class="far fa-plus-square"></i> Create a new mainBoard</a>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

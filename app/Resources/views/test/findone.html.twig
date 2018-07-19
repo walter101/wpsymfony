@@ -1,0 +1,73 @@
+de test twig file<br>
+
+{{ dump(computer) }}
+    id: {{ computer.id }}<br>
+    name: {{ computer.name }}<br>
+
+
+    graphicCard: {{ computer.graphicCard }}<br>
+    Object GraphicCard:
+    {{ dump(computer.graphicCard) }}
+    id: {{ computer.graphicCard.id }}<br>
+    name: {{ computer.graphicCard.name }}<br>
+    memory: {{ computer.graphicCard.memory }}<br>
+
+    Object MainBoard:
+    MainBoard: {{ computer.MainBoard }}<br>
+    {{ dump(computer.MainBoard ) }}
+    id: {{ computer.MainBoard.id }}<br>
+    name: {{ computer.MainBoard.name }}<br>
+    memorymax: {{ computer.MainBoard.memoryMax }}<br>
+    memoryTypes: {{ computer.MainBoard.memoryTypes }}<br>
+
+    Object Processor:
+    Processor: {{ computer.Processor }}<br>
+    {{ dump(computer.Processor ) }}
+
+    Object ColorList:
+    Color: {{ computer.Color }}<br>
+    {{ dump(computer.Color ) }}
+
+
+    Object OperatingSystemList:
+    OperatingSystemList: {{ computer.OperatingSystemList }}<br>
+    {{ dump(computer.OperatingSystemList ) }}
+
+
+    Object housingList:
+    OperatingSystemList: {{ computer.housingList }}<br>
+    {{ dump(computer.housingList ) }}
+
+
+    {#{{ computerdetails.MainBoard.id }}#}
+
+
+    {#Methode getGraphicCard() in computer entity:<br>#}
+    {#{{ computerdetails.getGraphicCard() }}<br>#}
+    {#{{ computerdetails.getMainBoard() }}<br>#}
+
+
+
+
+    {#{{ computerdetails.graphicCard.id }}#}
+
+
+{#GraphicCard &#123;&#35;5122 ?#}
+  {#+__isInitialized__: true#}
+  {#-id: 1#}
+  {#-name: "kaart12"#}
+  {#-slots: 2#}
+  {#+memory: "128GB"#}
+  {#+computer: ""#}
+  {#-memoryType: "ddr4"#}
+  {#-memoryInterfact: "ddr4"#}
+  {#-memorySpeed: "500mhz"#}
+  {#-clockSpeed: "1250hrz"#}
+  {#-dvi: "2"#}
+  {#-hdmi: "1"#}
+  {#-powerUse: "550w"#}
+  {#-image: "image1.jpg"#}
+  {#-status: "1"#}
+  {##container: null#}
+   {#…2#}
+{#}#}

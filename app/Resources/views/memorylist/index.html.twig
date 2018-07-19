@@ -1,0 +1,42 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+    <h1>Memorylists list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Memoryoption</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for memoryList in memoryLists %}
+            <tr>
+                <td><a href="{{ path('memorylist_show', { 'id': memoryList.id }) }}">{{ memoryList.id }}</a></td>
+                <td>{{ memoryList.memoryOption }}</td>
+                <td>
+                    <a href="{{ path('memorylist_show', { 'id': memoryList.id }) }}"> <i class="fas fa-eye fa-lg"></i></a>
+                    <a href="{{ path('memorylist_edit', { 'id': memoryList.id }) }}"> <i class="fas fa-edit fa-lg"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('memorylist_new') }}"><i class="far fa-plus-square"></i> Create a new memoryList</a>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

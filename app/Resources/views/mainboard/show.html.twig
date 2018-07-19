@@ -1,0 +1,116 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Mainboard</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mainBoard.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ mainBoard.name }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ mainBoard.price }}</td>
+            </tr>
+            <tr>
+                <th>Pclex16</th>
+                <td>{{ mainBoard.PCLex16 }}</td>
+            </tr>
+            <tr>
+                <th>Pclex1</th>
+                <td>{{ mainBoard.PCLex1 }}</td>
+            </tr>
+            <tr>
+                <th>Memoryslots</th>
+                <td>{{ mainBoard.memorySlots }}</td>
+            </tr>
+            <tr>
+                <th>Memorymax</th>
+                <td>{{ mainBoard.memoryMax }}</td>
+            </tr>
+            <tr>
+                <th>Memorytypes</th>
+                <td>{{ mainBoard.memoryTypes }}</td>
+            </tr>
+            <tr>
+                <th>Usb2_0</th>
+                <td>{{ mainBoard.usb20 }}</td>
+            </tr>
+            <tr>
+                <th>Usb3_0</th>
+                <td>{{ mainBoard.usb30 }}</td>
+            </tr>
+            <tr>
+                <th>Usb3_1</th>
+                <td>{{ mainBoard.usb31 }}</td>
+            </tr>
+            <tr>
+                <th>Hdmi_inputs</th>
+                <td>{{ mainBoard.hdmiinputs }}</td>
+            </tr>
+            <tr>
+                <th>Dvi_inputs</th>
+                <td>{{ mainBoard.dviinputs }}</td>
+            </tr>
+            <tr>
+                <th>Bluetooth</th>
+                <td>{% if mainBoard.bluetooth %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Wlan</th>
+                <td>{% if mainBoard.wlan %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Microphone_in</th>
+                <td>{% if mainBoard.microphonein %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Line_in</th>
+                <td>{% if mainBoard.linein %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Line_out</th>
+                <td>{% if mainBoard.lineout %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th valign="top">Image</th>
+                <td>
+                    {{ mainBoard.image }}
+                    <img src="{{ asset('uploads/images/'~ mainBoard.image) }}" alt="{{ mainBoard.name }}" />
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mainboard_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mainboard_edit', { 'id': mainBoard.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

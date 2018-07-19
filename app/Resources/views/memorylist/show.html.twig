@@ -1,0 +1,50 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Memorylist</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ memoryList.id }}</td>
+            </tr>
+            <tr>
+                <th>Memoryoption</th>
+                <td>{{ memoryList.memoryOption }}</td>
+            </tr>
+            <tr>
+                <th valign="top">Image</th>
+                <td><img src="{{ asset('uploads/images/'~ memoryList.image) }}" alt="{{ memoryList.memoryOption }}" /></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('memorylist_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('memorylist_edit', { 'id': memoryList.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <!--<input type="submit" value="Delete">-->
+                <button type="submit"><i class="fas fa-times"></i></button>
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

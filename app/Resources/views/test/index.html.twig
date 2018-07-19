@@ -1,0 +1,62 @@
+de test twig file<br>
+
+{{ dump(computer) }}
+
+{%  for computerdetails in computer %}
+    Conputerdetails<br>
+    {{ dump(computerdetails) }}
+    id: {{ computerdetails.id }}<br>
+    name: {{ computerdetails.name }}<br>
+
+
+    graphicCard: {{ computerdetails.graphicCard }}<br>
+    Object GraphicCard:
+    {{ dump(computerdetails.graphicCard) }}
+
+    {{ computerdetails.graphicCard.id }}
+    {{ computerdetails.graphicCard.name }}
+    {{ computerdetails.graphicCard.memory }}
+
+
+
+    Object MainBoard:
+    MainBoard: {{ computerdetails.MainBoard }}<br>
+    {{ dump(computerdetails.MainBoard ) }}
+
+    {#{{ computerdetails.MainBoard.id }}#}
+
+
+    {#Methode getGraphicCard() in computer entity:<br>#}
+    {#{{ computerdetails.getGraphicCard() }}<br>#}
+    {#{{ computerdetails.getMainBoard() }}<br>#}
+
+
+
+
+    {#{{ computerdetails.graphicCard.id }}#}
+
+        {%  for name in computerdetails.graphicCard %}
+            detaild<br>
+            {{  dump(name) }}
+        {% endfor %}
+{% endfor %}
+
+{#GraphicCard &#123;&#35;5122 ?#}
+  {#+__isInitialized__: true#}
+  {#-id: 1#}
+  {#-name: "kaart12"#}
+  {#-slots: 2#}
+  {#+memory: "128GB"#}
+  {#+computer: ""#}
+  {#-memoryType: "ddr4"#}
+  {#-memoryInterfact: "ddr4"#}
+  {#-memorySpeed: "500mhz"#}
+  {#-clockSpeed: "1250hrz"#}
+  {#-dvi: "2"#}
+  {#-hdmi: "1"#}
+  {#-powerUse: "550w"#}
+  {#-image: "image1.jpg"#}
+  {#-status: "1"#}
+  {##container: null#}
+   {#…2#}
+{#}#}

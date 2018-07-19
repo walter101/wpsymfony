@@ -1,0 +1,99 @@
+{% extends 'basemanager.html.twig' %}
+
+{%  block body %}
+
+{# Add department form #}
+{%  if (action is defined) and (action == 'Add_Employee') %}
+    Action: {{ action }}<br>
+
+    <form >
+        Voornaam:<br>
+        <input type="text" name="firstname" value="{{ FormValues.firstname }}"><br>
+        Achternaam:<br>
+        <input type="text" name="lastname" value="{{ FormValues.lastname }}"><br>
+
+        <select name="gender">
+            <option value="man">Man</option>
+            <option value="vrouw">Vrouw</option>
+        </select>
+
+        <input type="hidden" name="parentDepartment" value="{{ DepartmentID }}">
+        <input type="submit" name="submitAddEmployee" value="Save">
+    </form>
+
+{% endif %}
+
+{# Add employee form #}
+{%  if (action is defined) and (action == 'Add_Department') %}
+    Action: {{ action }}<br>
+
+    <form >
+        Afdelingsnaam:<br>
+        <input type="text" name="department" value="{{ FormValues.department }}"><br>
+
+        <input type="hidden" name="parentDepartment" value="{{ DepartmentID }}">
+        <input type="submit" name="submitAddDepartment" value="Save">
+    </form>
+
+{% endif %}
+
+
+
+
+{#&#123;&#35;parentDepartment: {{ parentDepartment }}<br>&#35;&#125;#}
+{#parentDepartmentID: {{ dump(DepartmentID) }}#}
+{#parentCurrentDepartment: {{ dump(parentCurrentDepartment) }}#}
+{#currentDepartments: {{ dump(currentDepartments) }}#}
+{#currentEmployees:  {{ dump(currentEmployees) }}#}
+
+{# Terug naar begin #}
+<a href="{{ path('managetree') }}"><i class="fas fa-home"></i> Home</a><br>
+{# Een lijn omhoog terug #}
+{% if parentCurrentDepartment is defined %}
+    {#parentCurrentDepartment: {{ parentCurrentDepartment }}<br>#}
+    <a href="{{ path('managetree', {'DepartmentID' : parentCurrentDepartment }) }}"><i class="fas fa-undo-alt"></i> Terug</a><br>
+
+{% endif %}
+
+<div style="font-weight: bold;"><i class="fas fa-arrow-right"></i> {{ departmentname }}</div>
+
+<div style="width: 300px;height: 500px; overflow: scroll;">
+
+    {% if currentDepartments is defined %}
+        <div style="font-weight:bold;"><i class="fas fa-building"></i> Afdelingen:</div>
+        {%  for department in currentDepartments %}
+            {# Use the dept_no to show all the departments in this department you click on #}
+            <div style="margin-left:10px;">&bull; <a href="{{ path('managetree', {'DepartmentID' : department.dept_no }) }}">{{ department.dept_name }}(dept_id:{{ department.dept_no }})</a></div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if currentEmployees is defined %}
+        <div style="font-weight:bold;"><i class="fas fa-users"></i> Werknemers:</div>
+        {%  for employee in currentEmployees %}
+            <div style="margin-left:10px;">
+                &bull;
+                {%  if employee.gender == "man" %}<i class="fas fa-male"></i>{%  endif %}
+                {% if employee.gender == "vrouw" %}<i class="fas fa-female"></i>{%  endif %}
+                {{ employee.firstname }} {{ employee.lastname }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+
+
+    <div style="font-weight:bold;">
+        <i class="fas fa-plus"></i>
+        <a href="{{ path('add_department', {'DepartmentID' : DepartmentID })  }}">Add Department</a>
+    </div>
+    <div style="font-weight:bold;">
+        <i class="fas fa-plus"></i>
+        <a href="{{ path('add_employee', {'DepartmentID' : DepartmentID }) }}">Add Employee</a><br>
+    </div>
+
+
+    <i class="fas fa-male"></i>
+    <i class="fas fa-female"></i>
+
+{%  endblock %}

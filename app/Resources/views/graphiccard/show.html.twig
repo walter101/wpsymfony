@@ -1,0 +1,91 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Graphiccard</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ graphicCard.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ graphicCard.name }}</td>
+            </tr>
+            <tr>
+                <th>Slots</th>
+                <td>{{ graphicCard.slots }}</td>
+            </tr>
+            <tr>
+                <th>Memory</th>
+                <td>{{ graphicCard.memory }}</td>
+            </tr>
+            <tr>
+                <th>Memorytype</th>
+                <td>{{ graphicCard.memoryType }}</td>
+            </tr>
+            <tr>
+                <th>Memoryinterfact</th>
+                <td>{{ graphicCard.memoryInterfact }}</td>
+            </tr>
+            <tr>
+                <th>Memoryspeed</th>
+                <td>{{ graphicCard.memorySpeed }}</td>
+            </tr>
+            <tr>
+                <th>Clockspeed</th>
+                <td>{{ graphicCard.clockSpeed }}</td>
+            </tr>
+            <tr>
+                <th>Dvi</th>
+                <td>{{ graphicCard.dvi }}</td>
+            </tr>
+            <tr>
+                <th>Hdmi</th>
+                <td>{{ graphicCard.hdmi }}</td>
+            </tr>
+            <tr>
+                <th>Poweruse</th>
+                <td>{{ graphicCard.powerUse }}</td>
+            </tr>
+            <tr>
+                <th valign="top">Image</th>
+                <td>
+                    {{ graphicCard.image }}
+                    <img src="{{ asset('uploads/images/'~ graphicCard.image) }}" alt="{{ graphicCard.name }}" />
+                </td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ graphicCard.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('graphiccard_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('graphiccard_edit', { 'id': graphicCard.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

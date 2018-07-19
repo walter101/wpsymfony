@@ -1,0 +1,19 @@
+
+<html>
+<body>
+
+
+Show auto twig file<br>
+
+<a href="{{ path('showauto') }}">showauto new</a><br>
+<a href="{{ path('showautoService') }}">showautoService</a><br>
+<a href="{{ path('showAutoServiceInService') }}">showAutoServiceInService</a><br>
+
+{{ dump(auto) }}
+
+{%  if afleverplaats is defined %}
+    {{ afleverplaats }}
+{% endif %}
+</body>
+</html>
+

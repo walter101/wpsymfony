@@ -1,0 +1,115 @@
+{% extends 'basemanager.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<h1>Graphiccard edit</h1>
+
+    {{ form_start(edit_form) }}
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Eigenschap</th>
+            <th scope="col">Input</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ form_label(edit_form.name)  }}</td>
+            <td>{{ form_widget(edit_form.name)  }}</td>
+            <td>{{ form_errors(edit_form.name)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.slots)  }}</td>
+            <td>{{ form_widget(edit_form.slots)  }}</td>
+            <td>{{ form_errors(edit_form.slots)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.memory)  }}</td>
+            <td>{{ form_widget(edit_form.memory)  }}</td>
+            <td>{{ form_errors(edit_form.memory)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.memoryType)  }}</td>
+            <td>{{ form_widget(edit_form.memoryType)  }}</td>
+            <td>{{ form_errors(edit_form.memoryType)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.memoryInterfact)  }}</td>
+            <td>{{ form_widget(edit_form.memoryInterfact)  }}</td>
+            <td>{{ form_errors(edit_form.memoryInterfact)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.memorySpeed)  }}</td>
+            <td>{{ form_widget(edit_form.memorySpeed)  }}</td>
+            <td>{{ form_errors(edit_form.memorySpeed)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.clockSpeed)  }}</td>
+            <td>{{ form_widget(edit_form.clockSpeed)  }}</td>
+            <td>{{ form_errors(edit_form.clockSpeed)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.dvi)  }}</td>
+            <td>{{ form_widget(edit_form.dvi)  }}</td>
+            <td>{{ form_errors(edit_form.dvi)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.hdmi)  }}</td>
+            <td>{{ form_widget(edit_form.hdmi)  }}</td>
+            <td>{{ form_errors(edit_form.hdmi)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.powerUse)  }}</td>
+            <td>{{ form_widget(edit_form.powerUse)  }}</td>
+            <td>{{ form_errors(edit_form.powerUse)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.image)  }}</td>
+            <td>{{ form_widget(edit_form.image)  }}</td>
+            <td>{{ form_errors(edit_form.image)  }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.status)  }}</td>
+            <td>{{ form_widget(edit_form.status)  }}</td>
+            <td>{{ form_errors(edit_form.status)  }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="Edit" formnovalidate/>
+            </td>
+        </tr>
+        {{ form_end(edit_form) }}
+
+        <tr>
+            <td colspan="3">
+            <ul>
+                <li>
+                    <a href="{{ path('graphiccard_index') }}">Back to the list</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                        <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+
+
+{% endblock %}
+
+{%  block menu %}
+    {{  include('includes/menu.html.twig') }}
+{%  endblock %}

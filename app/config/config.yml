@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -35,6 +35,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+       - bootstrap_3_layout.html.twig
 
 # Doctrine Configuration
 doctrine:
@@ -57,6 +59,16 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+
+# doctrine_cache bundle
+doctrine_cache:
+    providers:
+        # This is the name for the cache system were using: $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
+        my_markdown_cache:
+            type: file_system
+            # Now i am specifying an directoy, this will end up in /web/...  if you dont set any here it will create one in var/cache/dev/doctrine/cache/file_system
+            file_system:
+                directory: %kernel.cache_dir%/markdown_cache
 
 # Swiftmailer Configuration
 swiftmailer:
